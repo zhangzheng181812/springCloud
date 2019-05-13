@@ -17,6 +17,6 @@ public class Application {
 
     @RequestMapping("/test")
     public String test(){
-        return "helloword";
+        return "helloword!";
     }
 }
