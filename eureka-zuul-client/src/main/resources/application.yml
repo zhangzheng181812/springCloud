@@ -1,0 +1,23 @@
+server:
+  port: 8261
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8762/eureka/
+
+spring:
+  application:
+    name: eureka-zuul-client
+
+zuul:
+  routes:
+    hiapi:
+      path: /hiapi/**
+      serviceId: eureka-client
+    ribbonapi:
+      path: /ribbonapi/**
+      serviceId: eureka-ribbon-client
+    feignapi:
+      path: /feignapi/**
+      serviceId: eureka-feign-client

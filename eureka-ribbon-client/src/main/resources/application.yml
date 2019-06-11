@@ -8,4 +8,4 @@ eureka:
 
 spring:
   application:
-    name: eureka-ribbo-client
+    name: eureka-ribbon-client
