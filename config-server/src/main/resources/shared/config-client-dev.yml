@@ -1,0 +1,4 @@
+server:
+  port: 8061
+
+foo: foo version 1

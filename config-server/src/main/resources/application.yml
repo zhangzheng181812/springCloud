@@ -1,0 +1,18 @@
+server:
+  port: 8161
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://127.0.0.1:8762/eureka/
+
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/shared
+  profiles:
+    active: native  #从本地读取
+  application:
+      name: config-server
