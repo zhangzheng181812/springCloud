@@ -19,8 +19,11 @@ public class EurekaClientApplication {
 	@Value("${server.port}")
 	String port;
 
-	@RequestMapping("sayHI")
+	@Value("${foo}")
+	String foo;
+
+	@RequestMapping("/sayHI")
 	public String sayHi(){
-		return "Hi~"+"---"+port;
+		return "Hi~"+"---"+port+"---"+foo;
 	}
 }

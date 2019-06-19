@@ -1,0 +1,33 @@
+#bootstrap 和 application 都是用来配置参数的，bootstrap优先级高
+
+#此处的指定了port 如果远程读取的配置文件再次指定，会以远程指定的为主
+server:
+  port: 8662
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8762/eureka/
+
+spring:
+  application:
+    name: eureka-client
+####################################################读取某一个configClient start
+#  cloud:
+#    config:
+#      uri: http://127.0.0.1:8161     #读取配置文件的uri
+#      fail-fast: true                 #如果没有读取成功，则立刻返回失败
+#  profiles:
+#    active: dev2
+####################################################读取某一个configClient end
+
+###################################################读取某一个多节点高可用的configClient start
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      fail-fast: true                 #如果没有读取成功，则立刻返回失败
+  profiles:
+    active: dev2
+###################################################读取某一个多节点高可用的configClient end
