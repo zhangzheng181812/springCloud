@@ -2,3 +2,4 @@ server:
   port: 8062
 
 foo: foo version 1
+dev2: dev2
