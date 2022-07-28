@@ -8,7 +8,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://127.0.0.1:8762/eureka/
-
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
 spring:
   application:
     name: eureka-client
@@ -29,5 +31,5 @@ spring:
         service-id: config-server
       fail-fast: true                 #如果没有读取成功，则立刻返回失败
   profiles:
-    active: dev1,dev2
+    active: dev1
 ###################################################读取某一个多节点高可用的configClient end

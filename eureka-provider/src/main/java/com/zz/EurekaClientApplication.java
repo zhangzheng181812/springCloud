@@ -25,11 +25,8 @@ public class EurekaClientApplication {
 	@Value("${dev1}")
 	String dev1;
 
-	@Value("${dev2}")
-	String dev2;
-
 	@RequestMapping("/sayHI")
 	public String sayHi(){
-		return "Hi~"+"---"+port+"---"+foo+dev1+dev2;
+		return "Hi~"+"---"+port+"---"+foo+dev1;
 	}
 }
