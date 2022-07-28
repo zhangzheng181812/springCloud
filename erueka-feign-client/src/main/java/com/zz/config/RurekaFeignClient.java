@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FeignClient(value = "eureka-client" , fallback = Hihystrix.class)
 public interface RurekaFeignClient {
 
-    @RequestMapping("sayHI")
+    @RequestMapping("/sayHI")
     String hi();
 }
