@@ -1,6 +1,6 @@
 package com.zz.config;
 
-import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider;
+import org.springframework.cloud.netflix.zuul.filters.route.FallbackProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,7 +15,7 @@ import java.io.InputStream;
  * Created by zhangzheng on 2019/6/17.
  */
 @Component
-public class MyFallbackProvider implements ZuulFallbackProvider {
+public class MyFallbackProvider implements FallbackProvider {
     @Override
     public String getRoute() {
         return "eureka-client";
@@ -23,7 +23,7 @@ public class MyFallbackProvider implements ZuulFallbackProvider {
     }
 
     @Override
-    public ClientHttpResponse fallbackResponse() {
+    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
         return new ClientHttpResponse() {
             @Override
             public HttpStatus getStatusCode() throws IOException {
