@@ -1,9 +1,15 @@
 server:
   port: 8761
 
+spring:
+  application:
+    name: eureka-server
+
 eureka:
   instance:
     hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
     #是否要注册到其他Server上
     registerWithEureka: true

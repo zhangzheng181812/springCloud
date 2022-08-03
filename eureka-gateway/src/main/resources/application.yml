@@ -1,0 +1,35 @@
+server:
+  port: 8961
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8762/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: eureka-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ribbonapi
+          uri: lb://eureka-ribbon-client
+          predicates:
+            - Path=/gateway/ribbonapi/**
+          filters:
+            - StripPrefix=2
+        - id: openfeign
+          uri: lb://eureka-feign-client
+          predicates:
+            - Path=/gateway/openfeign/**
+          filters:
+            - StripPrefix=2
+        - id: api
+          uri: lb://eureka-client
+          predicates:
+            - Path=/gateway/ribbonapi/**
+          filters:
+            - StripPrefix=2
