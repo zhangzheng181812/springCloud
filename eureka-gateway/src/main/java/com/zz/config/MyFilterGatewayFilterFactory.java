@@ -1,5 +1,6 @@
 package com.zz.config;
 
+import lombok.Data;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
@@ -11,27 +12,36 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 
-public class MyfilterGatewayFilterFactory extends AbstractGatewayFilterFactory<MyfilterGatewayFilterFactory.MyTest> {
-    public MyfilterGatewayFilterFactory(){
+
+@Component
+public class MyFilterGatewayFilterFactory extends AbstractGatewayFilterFactory<MyFilterGatewayFilterFactory.MyTest> {
+    public MyFilterGatewayFilterFactory(){
         super(MyTest.class);
     }
     @Override
     public List<String> shortcutFieldOrder() {
-        return Arrays.asList("name");
+        return Arrays.asList("name","key");
     }
 
     @Override
     public GatewayFilter apply(MyTest config) {
         return (exchange, chain) -> {
             if (!config.isEnabled()) {
+                System.out.println("close");
                 return chain.filter(exchange);
             }
+            System.out.println("open");
+            System.out.println(config.getKey());
             return chain.filter(exchange);
         };
     }
+
+    @Data
     public static class MyTest {
         // 控制是否开启认证
         private boolean enabled;
+
+        private String key;
 
         public MyTest() {}
 
@@ -39,8 +49,5 @@ public class MyfilterGatewayFilterFactory extends AbstractGatewayFilterFactory<M
             return enabled;
         }
 
-        public void setEnabled(boolean enabled) {
-            this.enabled = enabled;
-        }
     }
 }

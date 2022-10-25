@@ -30,6 +30,10 @@ spring:
         - id: api
           uri: lb://eureka-client
           predicates:
-            - Path=/gateway/ribbonapi/**
+            - Path=/gateway/client/**
           filters:
             - StripPrefix=2
+            - name: MyFilter
+              args:
+                enabled: true
+                key: test
