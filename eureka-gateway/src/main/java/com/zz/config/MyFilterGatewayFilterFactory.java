@@ -20,7 +20,7 @@ public class MyFilterGatewayFilterFactory extends AbstractGatewayFilterFactory<M
     }
     @Override
     public List<String> shortcutFieldOrder() {
-        return Arrays.asList("name","key");
+        return Arrays.asList("enabled","key");
     }
 
     @Override
